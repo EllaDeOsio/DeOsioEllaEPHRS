@@ -6,7 +6,7 @@ namespace EmployeePayroll;
 internal static class Program
 {
     // ===== MERGE-CONFLICT TARGET LINE (change this line differently on main and on your feature branch) =====
-    private const string AppTitle = "EMPLOYEE PAYROLL & HR MANAGEMENT SYSTEM";
+    private const string AppTitle = "EMPLOYEE PAYROLL & HR SYSTEM - DeOsioElla Edition";
 
     // Starts EMPTY: 0 pre-defined records
     private static readonly List<Employee> Employees = new();
@@ -113,46 +113,46 @@ internal static class Program
         switch (Console.ReadLine()?.Trim())
         {
             case "1":
-            {
-                int id = ReadInt("Enter Employee ID: ");
-                var result = Employees.Where(e => e.Id == id);
-                PrintTable(result);
-                break;
-            }
+                {
+                    int id = ReadInt("Enter Employee ID: ");
+                    var result = Employees.Where(e => e.Id == id);
+                    PrintTable(result);
+                    break;
+                }
             case "2":
-            {
-                string term = ReadString("Enter name to search: ");
-                var result = Employees
-                    .Where(e => e.FirstName.Contains(term, StringComparison.OrdinalIgnoreCase)
-                             || e.LastName.Contains(term, StringComparison.OrdinalIgnoreCase)
-                             || e.FullName.Contains(term, StringComparison.OrdinalIgnoreCase))
-                    .OrderBy(e => e.LastName);
-                PrintTable(result);
-                break;
-            }
+                {
+                    string term = ReadString("Enter name to search: ");
+                    var result = Employees
+                        .Where(e => e.FirstName.Contains(term, StringComparison.OrdinalIgnoreCase)
+                                 || e.LastName.Contains(term, StringComparison.OrdinalIgnoreCase)
+                                 || e.FullName.Contains(term, StringComparison.OrdinalIgnoreCase))
+                        .OrderBy(e => e.LastName);
+                    PrintTable(result);
+                    break;
+                }
             case "3":
-            {
-                var depts = Employees.Select(e => e.Department)
-                                     .Distinct(StringComparer.OrdinalIgnoreCase)
-                                     .OrderBy(d => d)
-                                     .ToList();
-                if (depts.Any())
-                    Console.WriteLine("Available departments: " + string.Join(", ", depts));
+                {
+                    var depts = Employees.Select(e => e.Department)
+                                         .Distinct(StringComparer.OrdinalIgnoreCase)
+                                         .OrderBy(d => d)
+                                         .ToList();
+                    if (depts.Any())
+                        Console.WriteLine("Available departments: " + string.Join(", ", depts));
 
-                string dept = ReadString("Enter department: ");
-                var result = Employees
-                    .Where(e => e.Department.Equals(dept, StringComparison.OrdinalIgnoreCase))
-                    .OrderBy(e => e.LastName);
-                PrintTable(result);
-                break;
-            }
+                    string dept = ReadString("Enter department: ");
+                    var result = Employees
+                        .Where(e => e.Department.Equals(dept, StringComparison.OrdinalIgnoreCase))
+                        .OrderBy(e => e.LastName);
+                    PrintTable(result);
+                    break;
+                }
             case "4":
-            {
-                bool active = ReadBool("Show active employees? (Y = Active, N = On Leave/Inactive): ")!.Value;
-                var result = Employees.Where(e => e.IsActive == active).OrderBy(e => e.Id);
-                PrintTable(result);
-                break;
-            }
+                {
+                    bool active = ReadBool("Show active employees? (Y = Active, N = On Leave/Inactive): ")!.Value;
+                    var result = Employees.Where(e => e.IsActive == active).OrderBy(e => e.Id);
+                    PrintTable(result);
+                    break;
+                }
             default:
                 Error("Invalid choice.");
                 break;
