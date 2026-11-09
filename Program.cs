@@ -6,7 +6,7 @@ namespace EmployeePayroll;
 internal static class Program
 {
     // ===== MERGE-CONFLICT TARGET LINE (change this line differently on main and on your feature branch) =====
-    private const string AppTitle = "EMPLOYEE PAYROLL & HR MANAGEMENT SYSTEM v1.0 (MAIN)";
+    private const string AppTitle = "EMPLOYEE PAYROLL & HR MANAGEMENT SYSTEM v1.0 - DeOsioElla Edition";
 
     // Starts EMPTY: 0 pre-defined records
     private static readonly List<Employee> Employees = new();
